@@ -892,23 +892,48 @@ function registerUser(){
 
     if(data === "registered"){
 
-        alert("Registration successful");
+    alert("Registration successful");
 
-        if(registerRole === "patient"){
+    if(registerRole === "patient"){
 
-            window.location.href =
-            "dashboard.php";
-
-        } else {
-
-            window.location.href =
-            "profile.php";
-        }
+        window.location.href =
+        "dashboard.php";
 
     } else {
 
-        alert("Registration failed");
+        window.location.href =
+        "profile.php";
     }
+
+}
+
+else if(data === "email_exists"){
+
+    alert(
+    "This email is already registered"
+    );
+}
+
+else if(data === "weak_password"){
+
+    alert(
+    "Password must contain at least 6 characters"
+    );
+}
+
+else if(data === "invalid_image"){
+
+    alert(
+    "Only JPG, JPEG and PNG images are allowed"
+    );
+}
+
+else{
+
+    alert(
+    "Registration failed. Please try again."
+    );
+}
 });
 }
 
@@ -1084,21 +1109,32 @@ function checkUser() {
 
     .then(data => {
 
-        data = data.trim();
+    data = data.trim();
 
-        // SEND OTP
-        sendOTP(email);
+    console.log(data);
 
-        // GO TO OTP SCREEN
-        document.getElementById(
-            "registerStep1"
-        ).style.display = "none";
+    if(data === "exists"){
 
-        document.getElementById(
-            "registerStep2"
-        ).style.display = "block";
+        alert(
+        "This email is already registered"
+        );
 
-    });
+        return;
+    }
+
+    // SEND OTP
+    sendOTP(email);
+
+    // GO TO OTP SCREEN
+    document.getElementById(
+        "registerStep1"
+    ).style.display = "none";
+
+    document.getElementById(
+        "registerStep2"
+    ).style.display = "block";
+
+});
 }
 
 function sendOTP(email) {

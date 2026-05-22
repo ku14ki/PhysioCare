@@ -1,12 +1,6 @@
 <?php
 
-session_start();
-
-if (!isset($_SESSION['patient_id'])) {
-
-    header("Location: login.html");
-    exit();
-}
+include "php/patient-auth.php";
 
 include "php/db.php";
 

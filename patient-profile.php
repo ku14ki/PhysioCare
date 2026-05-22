@@ -1,13 +1,6 @@
 <?php
 
-session_start();
-
-if(!isset($_SESSION['therapist_name'])){
-
-    header("Location: login.html");
-
-    exit();
-}
+include "php/therapist-auth.php";
 
 include "php/db.php";
 

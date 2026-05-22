@@ -106,19 +106,45 @@ VALUES
 
 ";
 
-if(mysqli_query($conn, $sql)){
+if($conn->query($sql)){
 
     echo json_encode([
+
         "success" => true,
-        "message" => "Appointment booked successfully"
+
+        "message" =>
+        "Appointment booked successfully"
+
     ]);
 
-}else{
+}
+else{
 
-    echo json_encode([
-        "success" => false,
-        "message" => "Booking failed"
-    ]);
+    // UNIQUE SLOT ERROR
+    if($conn->errno == 1062){
+
+        echo json_encode([
+
+            "success" => false,
+
+            "message" =>
+            "Sorry, this slot was just booked by another patient."
+
+        ]);
+
+    }
+
+    else{
+
+        echo json_encode([
+
+            "success" => false,
+
+            "message" =>
+            "Booking failed"
+
+        ]);
+    }
 }
 
 ?>

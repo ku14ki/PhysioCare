@@ -14,16 +14,30 @@ if($action == "login"){
 
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+
     $role = trim($_POST['role']);
 
     // PATIENT LOGIN
 
     if($role == "patient"){
 
-        $sql = "SELECT * FROM patients
-                WHERE p_email='$email'";
+        $stmt =
+$conn->prepare(
 
-        $result = $conn->query($sql);
+"SELECT * FROM patients
+WHERE p_email=?"
+
+);
+
+$stmt->bind_param(
+"s",
+$email
+);
+
+$stmt->execute();
+
+$result =
+$stmt->get_result();
 
         if($result->num_rows > 0){
 
@@ -34,11 +48,15 @@ if($action == "login"){
                 $user['passwd']
             )){
 
+session_regenerate_id(true);
+
                 $_SESSION['patient_id']
                 = $user['patient_id'];
 
                 $_SESSION['patient_name']
                 = $user['p_name'];
+
+                $_SESSION['role'] = "patient";
 
                 echo "success";
 
@@ -57,10 +75,23 @@ if($action == "login"){
 
     else if($role == "therapist"){
 
-        $sql = "SELECT * FROM therapists
-                WHERE t_email='$email'";
+        $stmt =
+$conn->prepare(
 
-        $result = $conn->query($sql);
+"SELECT * FROM therapists
+WHERE t_email=?"
+
+);
+
+$stmt->bind_param(
+"s",
+$email
+);
+
+$stmt->execute();
+
+$result =
+$stmt->get_result();
 
         if($result->num_rows > 0){
 
@@ -71,6 +102,8 @@ if($action == "login"){
                 $user['passwd']
             )){
 
+            session_regenerate_id(true);
+
                 $_SESSION['therapist_id']
                 = $user['therapist_id'];
 
@@ -79,6 +112,8 @@ if($action == "login"){
 
                 $_SESSION['therapist_email'] =
                 $user['t_email'];
+
+                $_SESSION['role'] = "therapist";
 
                 echo "therapist_success";
 
@@ -102,14 +137,147 @@ else if($action == "register"){
 
     $role = trim($_POST['role']);
 
+    // PATIENT REGISTER
+
+    if($role == "patient"){
+
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $phone = trim($_POST['phone']);
+    $address = trim($_POST['address']);
+    $password = trim($_POST['password']);
+
+    // CHECK EMAIL
+    $checkStmt =
+    $conn->prepare(
+
+    "SELECT patient_id
+    FROM patients
+    WHERE p_email=?"
+
+    );
+
+    $checkStmt->bind_param(
+    "s",
+    $email
+    );
+
+    $checkStmt->execute();
+
+    $checkResult =
+    $checkStmt->get_result();
+
+    if($checkResult->num_rows > 0){
+
+        echo "email_exists";
+        exit();
+    }
+
+    // PASSWORD CHECK
+    if(strlen($password) < 6){
+
+        echo "weak_password";
+        exit();
+    }
+
+    // HASH PASSWORD
+    $hashedPassword =
+    password_hash(
+        $password,
+        PASSWORD_DEFAULT
+    );
+
+    // INSERT
+    $stmt =
+    $conn->prepare(
+
+    "INSERT INTO patients
+
+    (
+    p_name,
+    p_email,
+    p_phn,
+    p_addr,
+    passwd
+    )
+
+    VALUES
+    (?,?,?,?,?)"
+
+    );
+
+    $stmt->bind_param(
+
+    "sssss",
+
+    $name,
+    $email,
+    $phone,
+    $address,
+    $hashedPassword
+
+    );
+
+    if($stmt->execute()){
+
+    session_unset();
+session_destroy();
+
+session_start();
+
+    $_SESSION['patient_id'] =
+    $stmt->insert_id;
+
+    $_SESSION['patient_name'] =
+    $name;
+
+    echo "registered";
+} else {
+
+        echo "error";
+    }
+}
+
     // THERAPIST REGISTER
 
     if($role == "therapist"){
 
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
+
+$checkStmt =
+$conn->prepare(
+
+"SELECT therapist_id
+FROM therapists
+WHERE t_email=?"
+
+);
+
+$checkStmt->bind_param(
+"s",
+$email
+);
+
+$checkStmt->execute();
+
+$checkResult =
+$checkStmt->get_result();
+
+if($checkResult->num_rows > 0){
+
+    echo "email_exists";
+    exit();
+}
+
         $phone = trim($_POST['phone']);
         $password = trim($_POST['password']);
+
+        if(strlen($password) < 6){
+
+    echo "weak_password";
+    exit();
+}
 
         $hashedPassword =
         password_hash(
@@ -134,8 +302,30 @@ else if($action == "register"){
 
         $imageName = "";
 
+        $allowedTypes = [
+
+'image/jpeg',
+'image/png',
+'image/jpg'
+
+];
+
         if(isset($_FILES['image'])
         && $_FILES['image']['error'] == 0){
+
+        if(
+
+!in_array(
+$_FILES['image']['type'],
+$allowedTypes
+
+)
+
+){
+
+    echo "invalid_image";
+    exit();
+}
 
             $imageName =
             time() . "_" .
@@ -160,42 +350,70 @@ else if($action == "register"){
             );
         }
 
-        $sql = "INSERT INTO therapists
+        $stmt =
+$conn->prepare(
 
-        (t_name,
-        t_email,
-        t_phn,
-        specialization,
-        experience,
-        availability,
-        certificate,
-        passwd,
-        about,
-        fee,
-        image)
+"INSERT INTO therapists
 
-        VALUES
+(
+t_name,
+t_email,
+t_phn,
+specialization,
+experience,
+availability,
+certificate,
+passwd,
+about,
+fee,
+image
+)
 
-        ('$name',
-        '$email',
-        '$phone',
-        '$specialization',
-        '$experience',
-        '$availability',
-        '$certificateData',
-        '$hashedPassword',
-        '$about',
-        '$fee',
-        '$imageName')";
+VALUES
+(?,?,?,?,?,?,?,?,?,?,?)"
 
-        if($conn->query($sql)){
+);
 
-            echo "registered";
+$stmt->bind_param(
 
-        } else {
+"sssssssssss",
 
-            echo "error";
-        }
+$name,
+$email,
+$phone,
+$specialization,
+$experience,
+$availability,
+$certificateData,
+$hashedPassword,
+$about,
+$fee,
+$imageName
+
+);
+
+if($stmt->execute()){
+
+session_unset();
+session_destroy();
+
+session_start();
+
+    $_SESSION['therapist_id'] =
+    $stmt->insert_id;
+
+    $_SESSION['therapist_name'] =
+    $name;
+
+    $_SESSION['therapist_email'] =
+    $email;
+
+    echo "registered";
+}else {
+
+    echo "error";
+}
+
     }
 }
 ?>
