@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - PhysioCare</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <h2>Admin Panel</h2>
+
+    <!-- ADD THERAPIST -->
+    <div class="admin-card">
+        <h3>Add Therapist</h3>
+        <input placeholder="Name">
+        <input placeholder="Specialization">
+        <button>Add</button>
+    </div>
+
+    <!-- THERAPIST LIST -->
+    <div class="admin-card">
+        <h3>Therapists</h3>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td>Dr. Rahul</td>
+                <td>Orthopedic</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="admin-card">
+        <h3>Appointments</h3>
+
+        <table>
+            <tr>
+                <th>Patient</th>
+                <th>Therapist</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>Kabyashree</td>
+                <td>Dr. Sneha</td>
+                <td>22 Apr</td>
+                <td>Upcoming</td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+<script src="js/script.js"></script>
+
+</body>
+</html>

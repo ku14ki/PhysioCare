@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Therapist Profile</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<section class="profile-container">
+
+    <!-- TOP SECTION -->
+    <div class="profile-header">
+
+        <!-- IMAGE -->
+        <img src="" class="profile-img" id="profileImg">
+
+        <div class="profile-info">
+
+            <!-- NAME -->
+            <h1 class="profile-name" id="profileName"></h1>
+
+            <!-- ROLE -->
+            <p class="profile-role" id="profileRole"></p>
+
+            <!-- TAGS -->
+            <div class="tags profile-tags" id="profileTags"></div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="booking-card">
+
+<h3>
+Book Session
+</h3>
+
+<p>
+Consultation Fee
+</p>
+
+<h2>
+₹500
+</h2>
+
+<div class="session-modes">
+
+<span>
+📹 Video
+</span>
+
+<span>
+📞 Phone
+</span>
+
+<span>
+💬 Chat
+</span>
+
+</div>
+
+<a
+id="bookBtn"
+class="profile-book-btn"
+href="#">
+Book Appointment
+</a>
+
+</div>
+
+    </div>
+
+    <!-- NAV TABS -->
+    <div class="profile-tabs">
+
+<button
+class="tab-btn active-btn"
+onclick="showTab(event, 'about')">
+
+About
+
+</button>
+
+<button
+class="tab-btn"
+onclick="showTab(event, 'experience')">
+
+Experience
+
+</button>
+
+<button
+class="tab-btn"
+onclick="showTab(event, 'reviews')">
+
+Reviews
+
+</button>
+
+</div>
+
+    <!-- CONTENT -->
+    <!-- CONTENT -->
+
+<!-- ABOUT -->
+<div class="tab-content active-tab" id="about-tab">
+
+    <h3>About</h3>
+
+    <p id="profileAbout"></p>
+
+    <p id="profileExperience"></p>
+
+</div>
+
+<!-- EXPERIENCE -->
+<div class="tab-content" id="experience-tab">
+
+    <h3>Experience</h3>
+
+    <ul id="experienceList"></ul>
+
+</div>
+
+<!-- REVIEWS -->
+<div class="tab-content" id="reviews-tab">
+
+    <h3>Patient Reviews</h3>
+
+    <div id="reviewsContainer"></div>
+
+</div>
+
+</section>
+
+<!-- 🔥 IMPORTANT: separate JS file -->
+<script src="js/script.js"></script>
+<script src="js/therapist.js"></script>
+
+<script>
+
+function showTab(event, tab){
+
+document
+.querySelectorAll('.tab-content')
+.forEach(content => {
+
+content.classList.remove('active-tab');
+
+});
+
+document
+.querySelectorAll('.tab-btn')
+.forEach(button => {
+
+button.classList.remove('active-btn');
+
+});
+
+document
+.getElementById(tab + '-tab')
+.classList.add('active-tab');
+
+event.target.classList.add('active-btn');
+
+}
+
+</script>
+
+</body>
+</html>

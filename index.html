@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhysioCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+
+<section class="hero-bg">
+
+<!-- NAVBAR -->
+
+<header class="nav-wrapper">
+    <div class="navbar">
+
+        <div class="logo">PhysioCare</div>
+
+        <nav class="nav-links">
+            <a href="#providers">Find Doctors</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#articles">Articles</a>
+        </nav>
+
+<div class="nav-actions">
+    <button class="nav-outline" onclick="scrollToContact()">Contact</button>
+    <button class="nav-primary" onclick="goToLogin()">Get Started</button></div>
+
+    </div>
+</header>
+
+<div class="hero-overlay">
+    <h1>Physiotherapy</h1>
+    <p>Professional care at your home for faster recovery</p>
+
+    <div class="hero-buttons">
+    <button class="hero-btn" onclick="getTherapy()">Get Therapy</button>
+    <button class="hero-outline" onclick="scrollToAbout()">Learn More</button>
+</div>
+</div>
+
+
+</section>
+
+
+</section>
+
+<!-- ABOUT -->
+ <section id="about" class="about">
+
+    <div class="about-container">
+
+        <!-- LEFT SIDE -->
+        <div class="about-left">
+            <h2>About<br>PhysioCare</h2>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="about-right">
+            <p>
+                PhysioCare connects patients with certified physiotherapists,
+                making it easy to find the right care and book appointments effortlessly.
+            </p>
+
+            <p>
+                Our goal is to simplify healthcare access and help people recover faster
+                with trusted professionals.
+            </p>
+            <div class="about-stats">
+    <div>
+        <strong>500+</strong><br>
+        <span>Patients</span>
+    </div>
+    <div>
+        <strong>20+</strong><br>
+        <span>Experts</span>
+    </div>
+    <div>
+        <strong>100+</strong><br>
+        <span>Bookings</span>
+    </div>
+</div>
+        </div>
+
+    </div>
+
+</section>
+<!-- STEPS -->
+
+<section class="steps">
+    <h2>Few Steps to Begin</h2>
+<div class="steps-container">  <!-- 🔥 THIS WAS MISSING -->
+
+   <div class="step-card dark" onclick="goToRegister()">
+    <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
+    <h3>Register</h3>
+    <p>Create your account to get started</p>
+    <i class="fa-solid fa-arrow-right arrow"></i>
+</div>
+
+    <div class="step-card medium" onclick="scrollToProviders()">
+        <div class="icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3>Find Therapist</h3>
+        <p>Get matched with a provider</p>
+        <i class="fa-solid fa-arrow-right arrow"></i> <!-- 🔥 ADD THIS -->
+    </div>
+
+    <div class="step-card light" onclick="bookAppointment()">
+        <div class="icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3>Book Appointment</h3>
+        <p>Attend your first session</p>
+        <i class="fa-solid fa-arrow-right arrow"></i> <!-- 🔥 ADD THIS -->
+    </div>
+
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services" class="services">
+
+    <h2>Our Services</h2>
+    <p>We provide expert physiotherapy solutions tailored to your needs.</p>
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <h3>🦴 Orthopedic Therapy</h3>
+            <p>Treatment for bones, joints, and muscles.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Sports Rehabilitation</h3>
+            <p>Recover from sports injuries faster.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Post-Surgery Care</h3>
+            <p>Helping you regain strength after surgery.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Pain Management</h3>
+            <p>Relief from chronic pain conditions.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- THERAPISTS -->
+
+<section class="providers" id="providers">
+    <h2>Meet our providers</h2>
+    <p>
+        Our team includes licensed physiotherapists
+        committed to helping you recover faster.
+    </p>
+
+<div class="provider-list">
+
+    <!-- Row -->
+    <div class="provider-row" onclick="viewTherapist('rahul')">
+    <img src="images/doc1.jpg" alt="">
+    
+    <div>
+        <h4>Dr. Rahul</h4>
+        <p>Orthopedic Specialist</p>
+    </div>
+    
+    <span>5 Years Experience</span>
+</div>
+
+    <div class="provider-row" onclick="viewTherapist('sneha')">
+        <img src="images/doc2.jpg" alt="">
+        <div>
+            <h4>Dr. Sneha</h4>
+            <p>Sports Therapist</p>
+        </div>
+        <span>3 Years Experience</span>
+    </div>
+
+    <div class="provider-row" onclick="viewTherapist('amit')">
+        <img src="images/doc3.jpg" alt="">
+        <div>
+            <h4>Dr. Amit Sharma</h4>
+            <p>Senior Physiotherapist</p>
+        </div>
+        <span>3 Years Experience</span>
+    </div>
+
+</div>
+
+<button class="view-btn" onclick="goToAllTherapists()">
+    See All Therapists
+</button>
+
+</section>
+
+<!-- ARTCILES -->
+ <section id="articles" class="articles">
+
+    <h2>Health Articles</h2>
+    <p class="articles-sub">
+        Tips and insights to help you stay healthy and recover faster.
+    </p>
+
+    <div class="articles-container">
+
+        <div class="article-card">
+            <h3>5 Exercises for Back Pain</h3>
+            <p>Simple daily exercises to reduce back pain and improve posture.</p>
+            <a href="#">Read More</a>
+        </div>
+
+        <div class="article-card">
+            <h3>Post-Surgery Recovery Tips</h3>
+            <p>How to heal faster and regain strength after surgery.</p>
+            <a href="#">Read More</a>
+        </div>
+
+        <div class="article-card">
+            <h3>Sports Injury Prevention</h3>
+            <p>Learn how to avoid injuries while staying active.</p>
+            <a href="#">Read More</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+ <section id="contact" class="contact">
+
+    <h2>Contact Us</h2>
+    <p class="contact-sub">
+        Have questions? Reach out to us anytime.
+    </p>
+
+    <div class="contact-container">
+
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+
+        <button class="contact-btn">Send Message</button>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© 2026 PhysioCare</p>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

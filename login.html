@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - PhysioCare</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    
+
+<div class="login-container">
+
+    <div class="login-wrapper">
+
+        <!-- LEFT SIDE (ADD THIS BACK) -->
+        <div class="login-left"></div>
+
+        <!-- RIGHT SIDE -->
+        <div class="login-right">
+
+            <div class="login-card">
+
+    <!-- LOGIN FORM -->
+<div id="loginForm">
+
+    <h2>Login</h2>
+
+    <div class="role-selector">
+
+    <button class="role-btn active"
+    data-role="patient">
+
+        Patient
+
+    </button>
+
+    <button class="role-btn"
+    data-role="therapist">
+
+        Therapist
+
+    </button>
+
+</div>
+
+    <input type="email"
+    id="loginEmail"
+    placeholder="Email address">
+
+    <input type="password"
+    id="loginPassword"
+    placeholder="Password">
+
+    <button class="login-btn"
+    onclick="loginUser()">
+        Login
+    </button>
+
+    <p class="divider">or sign in with</p>
+
+    <div class="social-icons">
+        <div>G</div>
+        <div></div>
+    </div>
+
+    <p class="login-link">
+        Don't have an account?
+        <span onclick="showRegister()">Register</span>
+    </p>
+
+</div>
+
+    <!-- REGISTER FORM -->
+    
+<div id="registerForm" style="display:none;">
+
+    <!-- STEP 1 -->
+    <div id="registerStep1">
+
+        <h2>Create Account</h2>
+
+        <div class="register-role-selector">
+
+    <button type="button"
+    class="register-role-btn active"
+    data-role="patient">
+
+        Patient
+
+    </button>
+
+    <button type="button"
+    class="register-role-btn"
+    data-role="therapist">
+
+        Therapist
+
+    </button>
+
+</div>
+
+        <p class="auth-subtitle">
+            Enter your email to continue
+        </p>
+
+        <div class="otp-row">
+
+            <input type="email"
+            id="regEmail"
+            placeholder="Email Address">
+
+            <button type="button"
+            class="otp-btn"
+            onclick="checkUser()">
+
+                Continue
+
+            </button>
+
+        </div>
+
+        <p class="login-link">
+
+            Already have an account?
+
+            <span onclick="showLogin()">
+                Log in
+            </span>
+
+        </p>
+
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="registerStep2"
+    style="display:none;">
+
+        <h2>Verify OTP</h2>
+
+        <p class="auth-subtitle">
+
+            Enter the OTP sent to your email
+
+        </p>
+
+        <input type="text"
+        id="otpInput"
+        placeholder="Enter OTP">
+
+        <button class="login-btn"
+        onclick="verifyOTP()">
+
+            Verify OTP
+
+        </button>
+
+    </div>
+
+    <!-- STEP 3 -->
+    <!-- STEP 3 -->
+<div id="registerStep3"
+style="display:none;">
+
+    <h2>Complete Profile</h2>
+
+    <!-- COMMON FIELDS -->
+
+    <input type="text"
+    id="regName"
+    placeholder="Full Name">
+
+    <input type="text"
+    id="regPhone"
+    placeholder="Phone Number">
+
+    <input type="text"
+    id="regAddress"
+    placeholder="Address">
+
+    <input type="password"
+    id="regPassword"
+    placeholder="Password">
+
+    <input type="password"
+    id="regConfirmPassword"
+    placeholder="Confirm Password">
+
+    <!-- THERAPIST FIELDS -->
+
+    <div id="therapistFields" style="display:none;">
+
+    <div class="login-therapist-grid">
+
+        <input type="text"
+        id="specialization"
+        placeholder="Specialization">
+
+        <input type="number"
+        id="experience"
+        placeholder="Experience">
+
+        <input type="number"
+        id="fee"
+        placeholder="Consultation Fee">
+
+        <input type="text"
+        id="availability"
+        placeholder="Availability">
+
+        <textarea
+        id="about"
+        class="auth-textarea"
+        placeholder="About Yourself"></textarea>
+
+        <div class="full-width">
+
+            <label>Upload Certificate</label>
+
+            <input type="file"
+            id="certificate">
+
+        </div>
+
+        <div class="full-width">
+
+            <label>Upload Profile Image</label>
+
+            <input type="file"
+            id="image">
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- BUTTON -->
+
+    <button class="login-btn"
+    onclick="registerUser()">
+
+        Create Account
+
+    </button>
+
+</div>
+
+</div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
